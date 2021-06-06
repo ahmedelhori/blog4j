@@ -1,8 +1,8 @@
-drop table if exists blogposts;
+drop table if exists posts;
 drop table if exists tags;
-drop table if exists blogpost_tag;
+drop table if exists post_tag;
 
-create table blogposts(
+create table posts(
 	id bigint identity not null,
 	visible boolean default false not null,
 	title varchar(255) not null,
@@ -10,6 +10,7 @@ create table blogposts(
 	create_date datetime not null,
 	edit_date timestamp not null,
 	content varchar(20000) not null,
+	tags_line varchar(1000) not null,
 	primary key (id)
 );
 
@@ -19,9 +20,9 @@ create table tags(
 	primary key (id)
 );
 
-create table blogpost_tag(
-	blogpost bigint not null,
+create table post_tag(
+	post bigint not null,
 	tag bigint not null,
-	foreign key (blogpost) references blogposts(id),
+	foreign key (post) references posts(id),
 	foreign key (tag) references tags(id)
 );
