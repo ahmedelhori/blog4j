@@ -46,7 +46,7 @@ public class Post {
   private String content;
 
   @NotBlank
-  @Column(name = "tag_line", length = 1000)
+  @Column(name = "tags_line", length = 1000)
   private String tagsLine;
 
   @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
