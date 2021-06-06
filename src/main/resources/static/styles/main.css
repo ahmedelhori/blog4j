@@ -1,0 +1,59 @@
+html{
+	background-color: white;
+}
+
+body{
+	margin: 0;
+}
+
+header{
+	background-color: #0F61A9;
+	overflow: hidden;
+	padding: 3rem 4rem;
+	margin-bottom: 10rem;
+}
+
+footer{
+	color: white;
+	text-align:center;
+	background-color: #0F61A9;
+	overflow: hidden;
+	padding: 3rem 4rem;
+	margin-top: 10rem;
+}
+
+header *{
+	color:white;
+	text-decoration:none;
+}
+
+#logo{
+	display:inline;
+}
+
+#create_blog_post{
+	float: right;
+}
+
+article{
+	background-color: #F5F6FA;
+	overflow: hidden;
+	margin: 1rem auto 1rem;
+	padding: 0rem 2rem;
+	max-width: 55rem;
+	border: solid;
+	box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.6);
+	border-radius:1rem;
+}
+
+main{
+	min-height: 100vh;
+}
+
+main * {
+	max-width: 100vh;
+}
+
+p{
+	white-space: pre-wrap;
+}

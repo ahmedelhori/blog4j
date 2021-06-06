@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en-US" xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1" name="viewport">
+<title>Fragment</title>
+<link href="../styles/main.css" rel="stylesheet"
+	th:href="@{/styles/main.css}">
+</head>
+<body>
+	<header th:fragment="header">
+		<div id="logo">
+			<a href="/index.html" th:text="${blog_header}">David's Blog</a>
+		</div>
+		<div id="login">
+			<a href="/create.html" id="create_blog_post">Login</a>
+		</div>
+	</header>
+	<footer th:fragment="footer">
+		<div id="copyright">
+			<p th:text="${blog_footer}">© 2021 David</p>
+		</div>
+	</footer>
+</body>
+</html>

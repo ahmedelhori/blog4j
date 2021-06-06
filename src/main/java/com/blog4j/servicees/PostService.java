@@ -7,11 +7,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class PostService {
   @Autowired
-  public final PostRepo postRepository;
+  private final PostRepo postRepository;
 
   public void submitPost(Post post) {
     Post preparedPost = preparePost(post);
@@ -26,5 +28,9 @@ public class PostService {
       post.addTag(tag);
     }
     return post;
+  }
+
+  public List<Post> getAllPosts() {
+    return postRepository.findAll();
   }
 }

@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en-US" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <title th:text="${blog_title}">David's Blog</title>
+    <link href="../styles/main.css" rel="stylesheet"
+          th:href="@{/styles/main.css}">
+</head>
+<body>
+<header th:replace="fragments :: header"></header>
+<main>
+    <h1>Something went wrong! </h1>
+    <h2>Our Engineers are on it</h2>
+    <a href="/">Go Home</a>
+</main>
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>
