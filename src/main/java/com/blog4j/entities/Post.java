@@ -1,12 +1,13 @@
 package com.blog4j.entities;
 
-import com.sun.istack.NotNull;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,17 +18,20 @@ import java.util.Set;
 public class Post {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @NotNull
   @Column(name = "id", updatable = false, nullable = false)
   private Long id;
 
   @NotNull
   @Column(name = "visible")
-  private Boolean visible;
+  private Boolean visible = false;
 
+  @NotBlank
+  @Size(min = 1, max = 255)
   @Column(name = "title")
   private String title;
 
+  @NotBlank
+  @Size(min = 1, max = 255)
   @Column(name = "author")
   private String author;
 
@@ -42,14 +46,15 @@ public class Post {
   private LocalDateTime editDate;
 
   @NotBlank
+  @Size(min = 1, max = 20000)
   @Column(name = "content", length = 20000)
   private String content;
 
-  @NotBlank
+  @Size(min = 0, max = 1000)
   @Column(name = "tags_line", length = 1000)
   private String tagsLine;
 
-  @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+  @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
   @JoinTable(name = "post_tag",
     joinColumns = @JoinColumn(name = "post"),
     inverseJoinColumns = @JoinColumn(name = "tag"))

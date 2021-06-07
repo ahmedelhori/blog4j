@@ -1,11 +1,12 @@
 package com.blog4j.entities;
 
-import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,12 +18,12 @@ import java.util.Set;
 public class Tag {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @NotNull
   @Column(name = "id", updatable = false, nullable = false)
   private Long id;
 
-  @NotNull
-  @Column(name = "name")
+  @NotBlank
+  @Size(min = 1, max = 255)
+  @Column(name = "name", length = 255)
   private String name;
 
   @ManyToMany(mappedBy = "tags", fetch = FetchType.LAZY)
