@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html lang="en-US" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <title th:text="${blog_title}">David's Blog</title>
+    <link href="../static/styles/article.css" rel="stylesheet" th:href="@{/styles/article.css}">
+    <link href="../static/styles/main.css" rel="stylesheet" th:href="@{/styles/main.css}">
+</head>
+<body>
+<header class="header" th:replace="fragments :: header">
+</header>
+<main class="main main_v" th:remove="all-but-first">
+    <article class="article article_folded" th:each="blogPost : ${blogPosts}">
+        <span class="article__title" th:text="${blogPost.title}">Article 1</span>
+        <time class="article__date" datetime="2021-05-28" th:text="${blogPost.creationDate}">28/05/2021</time>
+        <span class="article__author" th:text="${blogPost.author}">by David</span>
+        <p class="article__content" th:text="${blogPost.content}">
+            Arch Linux (/ɑːrtʃ/)[4] is a Linux distribution for computers with x86-64 processors.[5] Arch Linux adheres
+            to the KISS principle ("Keep It Simple, Stupid")[6] and is focused on simplicity, modernity, pragmatism,
+            user centrality, and versatility. In practice, this means the project attempts to have minimal
+            distribution-specific changes, and therefore minimal breakage with updates, and be pragmatic over
+            ideological design choices and focus on customizability rather than user-friendliness.[7] A package manager
+            written specifically for Arch Linux, Pacman, is used to install, remove and update software packages.[8]
+            Arch Linux uses a rolling release model, meaning there are no "major releases" of completely new versions of
+            the system; a regular system update is all that is needed to obtain the latest Arch software; the
+            installation images released every month by the Arch team are simply up-to-date snapshots of the main system
+            components.[9] Arch Linux has comprehensive documentation, which consists of a community wiki known as the
+            ArchWiki...
+        </p>
+        <a href="blogpost.html" th:href="@{/dashboard/blogpost/{id}(id = ${blogPost.id})}">Read more</a>
+    </article>
+    <article class="article article_folded">
+        <span class="article__title">Article 2</span>
+        <time class="article__date" datetime="2021-05-28">28/05/2021</time>
+        <span class="article__author">by David</span>
+        <p class="article__content">
+            Arch Linux (/ɑːrtʃ/)[4] is a Linux distribution for computers with x86-64 processors.[5] Arch Linux adheres
+            to the KISS principle ("Keep It Simple, Stupid")[6] and is focused on simplicity, modernity, pragmatism,
+            user centrality, and versatility. In practice, this means the project attempts to have minimal
+            distribution-specific changes, and therefore minimal breakage with updates, and be pragmatic over
+            ideological design choices and focus on customizability rather than user-friendliness.[7] A package manager
+            written specifically for Arch Linux, Pacman, is used to install, remove and update software packages.[8]
+            Arch Linux uses a rolling release model, meaning there are no "major releases" of completely new versions of
+            the system; a regular system update is all that is needed to obtain the latest Arch software; the
+            installation images released every month by the Arch team are simply up-to-date snapshots of the main system
+            components.[9] Arch Linux has comprehensive documentation, which consists of a community wiki known as the
+            ArchWiki...
+        </p>
+        <a href="blogpost.html">Read more</a>
+    </article>
+    <article class="article article_folded">
+        <span class="article__title">Article 3</span>
+        <time class="article__date" datetime="2021-05-28">28/05/2021</time>
+        <span class="article__author">by David</span>
+        <p class="article__content">
+            Arch Linux (/ɑːrtʃ/)[4] is a Linux distribution for computers with x86-64 processors.[5] Arch Linux adheres
+            to the KISS principle ("Keep It Simple, Stupid")[6] and is focused on simplicity, modernity, pragmatism,
+            user centrality, and versatility. In practice, this means the project attempts to have minimal
+            distribution-specific changes, and therefore minimal breakage with updates, and be pragmatic over
+            ideological design choices and focus on customizability rather than user-friendliness.[7] A package manager
+            written specifically for Arch Linux, Pacman, is used to install, remove and update software packages.[8]
+            Arch Linux uses a rolling release model, meaning there are no "major releases" of completely new versions of
+            the system; a regular system update is all that is needed to obtain the latest Arch software; the
+            installation images released every month by the Arch team are simply up-to-date snapshots of the main system
+            components.[9] Arch Linux has comprehensive documentation, which consists of a community wiki known as the
+            ArchWiki...
+        </p>
+        <a href="blogpost.html">Read more</a>
+    </article>
+</main>
+<footer class="footer" th:replace="fragments :: footer">
+</footer>
+</body>
+</html>
