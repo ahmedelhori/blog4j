@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en-US" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <title th:text="${blog_title}">David's Blog</title>
+    <link href="../static/styles/card.css" rel="stylesheet"
+          th:href="@{/styles/card.css}">
+    <link href="../static/styles/main.css" rel="stylesheet"
+          th:href="@{/styles/main.css}">
+</head>
+<body>
+<header class="header" th:replace="fragments :: header"></header>
+<main class="main main_h">
+    <a class="card" href="dashboard/create.html">
+        <img class="card__img" src="../static/images/create_post.svg" th:src="@{/images/create_post.svg}">
+        <span class="card__text">Create a blog post</span>
+    </a>
+    <a class="card" href="dashboard/preview.html">
+        <img class="card__img" src="../static/images/preview_posts.svg" th:src="@{/images/preview_posts.svg}">
+        <span class="card__text">Preview blog posts</span>
+    </a>
+</main>
+<footer class="footer" th:replace="fragments :: footer"></footer>
+</body>
+</html>

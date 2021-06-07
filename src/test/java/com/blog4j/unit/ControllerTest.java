@@ -26,14 +26,20 @@ public class ControllerTest {
   private ControllerService controllerService;
 
   @BeforeEach
-  public void setup(){
+  public void setup() {
     when(postService.getAllPosts()).thenReturn(new ArrayList<>());
   }
 
+  @Test
+  public void getDashboardTest() throws Exception {
+    mockMvc.perform(get("/dashboard"))
+      .andDo(print())
+      .andExpect(status().isOk());
+  }
 
   @Test
-  public void getRequestTest() throws Exception {
-    mockMvc.perform(get("/"))
+  public void getPreviewTest() throws Exception {
+    mockMvc.perform(get("/dashboard/preview"))
       .andDo(print())
       .andExpect(status().isOk());
   }

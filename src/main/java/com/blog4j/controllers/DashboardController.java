@@ -1,7 +1,6 @@
 package com.blog4j.controllers;
 
 import com.blog4j.servicees.ControllerService;
-import com.blog4j.servicees.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,17 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequiredArgsConstructor
 @Controller
-@RequestMapping(name = "/")
-public class IndexController {
-  @Autowired
-  private final PostService postService;
+@RequestMapping(value = {"/dashboard", "/dashboard.html"})
+public class DashboardController {
   @Autowired
   private final ControllerService controllerService;
 
   @GetMapping
   public String getHandler(Model model) {
     controllerService.addBlogProperties(model);
-    model.addAttribute("blogPosts", postService.getAllPosts());
-    return "index";
+    return "dashboard";
   }
 }
