@@ -43,4 +43,11 @@ public class ControllerTest {
       .andDo(print())
       .andExpect(status().isOk());
   }
+
+  @Test
+  public void error404Test() throws Exception {
+    mockMvc.perform(get("/dashboard/site-doesnt-exist"))
+      .andDo(print())
+      .andExpect(status().is4xxClientError());
+  }
 }

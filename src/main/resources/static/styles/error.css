@@ -1,0 +1,12 @@
+.error{
+	display: flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+	flex:1;
+}
+.error__status-code{
+		font-family:monospace;
+    font-size:25rem;
+    font-weight:bold;
+}
