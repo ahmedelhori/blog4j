@@ -3,7 +3,6 @@ package com.blog4j.unit;
 import com.blog4j.entities.Post;
 import com.blog4j.servicees.ControllerService;
 import com.blog4j.servicees.PostService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,18 +21,25 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest
 public class ControllerTest {
+  private Post post;
   @Autowired
   private MockMvc mockMvc;
   @MockBean
   private PostService postService;
   @MockBean
   private ControllerService controllerService;
-  @MockBean
-  private ObjectMapper objectMapper;
 
   @BeforeEach
   public void setup() {
+    post = new Post();
+    post.setAuthor("Test Author");
+    post.setCreateDate(LocalDate.now());
+    post.setTitle("Title title");
+    post.setContent("Content");
+    post.setTagsLine("test, blog test");
+
     when(postService.getAllPosts()).thenReturn(new ArrayList<>());
+    when(postService.getPost(1L)).thenReturn(post);
   }
 
   @Test
@@ -72,12 +78,6 @@ public class ControllerTest {
 
   @Test
   public void postCreatePostTest() throws Exception {
-    Post post = new Post();
-    post.setAuthor("Test Author");
-    post.setCreateDate(LocalDate.now());
-    post.setTitle("Title title");
-    post.setContent("Content");
-    post.setTagsLine("test, blog test");
 
     mockMvc.perform(post("/dashboard/create")
       .flashAttr("post", post))
@@ -86,16 +86,34 @@ public class ControllerTest {
 
   @Test
   public void getPostParam() throws Exception {
-    Post post = new Post();
-    post.setAuthor("Test Author");
-    post.setCreateDate(LocalDate.now());
-    post.setTitle("Title title");
-    post.setContent("Content");
-    post.setTagsLine("test, blog test");
-
-    when(postService.getPost(1L)).thenReturn(post);
-
     mockMvc.perform(get("/dashboard/post/1"))
+      .andDo(print())
+      .andExpect(status().isOk());
+  }
+
+  @Test
+  public void editPost() throws Exception {
+    postService.submitPost(post);
+
+    mockMvc.perform(get("/dashboard/editpost/1"))
+      .andDo(print())
+      .andExpect(status().isOk());
+  }
+
+  @Test
+  public void deletePost() throws Exception {
+    postService.submitPost(post);
+
+    mockMvc.perform(get("/dashboard/deletepost/1"))
+      .andDo(print())
+      .andExpect(status().isOk());
+  }
+
+  @Test
+  public void publishPost() throws Exception {
+    postService.submitPost(post);
+
+    mockMvc.perform(get("/dashboard/publishpost/1"))
       .andDo(print())
       .andExpect(status().isOk());
   }

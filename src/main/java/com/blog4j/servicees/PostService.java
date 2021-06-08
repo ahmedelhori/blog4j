@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -38,5 +39,20 @@ public class PostService {
 
   public Post getPost(Long id) {
     return postRepository.findById(id).get();
+  }
+
+  public void publishPost(long id) {
+    Optional<Post> post = postRepository.findById(id);
+    if(post.isPresent()) {
+      post.get().setVisible(true);
+      postRepository.save(post.get());
+    }
+  }
+
+  public void deletePost(long id) {
+    Optional<Post> post = postRepository.findById(id);
+    if(post.isPresent()) {
+      postRepository.deleteById(id);
+    }
   }
 }
