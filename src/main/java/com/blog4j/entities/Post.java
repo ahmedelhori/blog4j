@@ -1,13 +1,13 @@
 package com.blog4j.entities;
 
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -36,14 +36,13 @@ public class Post {
   private String author;
 
   @NotNull
-  @CreationTimestamp
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
   @Column(name = "create_date")
-  private LocalDateTime createDate;
+  private LocalDate createDate = LocalDate.now();
 
   @NotNull
-  @UpdateTimestamp
   @Column(name = "edit_date")
-  private LocalDateTime editDate;
+  private LocalDateTime editDate = LocalDateTime.now();
 
   @NotBlank
   @Size(min = 1, max = 20000)

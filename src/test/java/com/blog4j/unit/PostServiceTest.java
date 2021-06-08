@@ -6,6 +6,7 @@ import com.blog4j.servicees.PostService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -23,7 +24,7 @@ public class PostServiceTest {
     post.setVisible(false);
     post.setTitle("Title title");
     post.setAuthor("Test Author");
-    post.setCreateDate(LocalDateTime.now());
+    post.setCreateDate(LocalDate.now());
     post.setEditDate(LocalDateTime.now());
     post.setContent("Content");
     post.setTagsLine("test, blog test");

@@ -10,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class PostRepoTest {
     post.setVisible(false);
     post.setTitle("Title title");
     post.setAuthor("Test Author");
-    post.setCreateDate(LocalDateTime.now());
+    post.setCreateDate(LocalDate.now());
     post.setEditDate(LocalDateTime.now());
     post.setContent(generateContent(5000));
     post.setTagsLine("test, PostTest");
