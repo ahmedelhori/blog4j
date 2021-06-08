@@ -35,7 +35,6 @@ public class CreateController {
   @PostMapping
   public String postHandler(@Valid @ModelAttribute Post post, Errors errors, Model model){
     controllerService.addBlogProperties(model);
-    System.out.println(errors.getAllErrors());
     if(errors.hasErrors()){
       return "create";
     }

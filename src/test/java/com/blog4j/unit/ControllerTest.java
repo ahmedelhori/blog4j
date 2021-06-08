@@ -83,4 +83,20 @@ public class ControllerTest {
       .flashAttr("post", post))
       .andExpect(status().isFound());
   }
+
+  @Test
+  public void getPostParam() throws Exception {
+    Post post = new Post();
+    post.setAuthor("Test Author");
+    post.setCreateDate(LocalDate.now());
+    post.setTitle("Title title");
+    post.setContent("Content");
+    post.setTagsLine("test, blog test");
+
+    when(postService.getPost(1L)).thenReturn(post);
+
+    mockMvc.perform(get("/dashboard/post/1"))
+      .andDo(print())
+      .andExpect(status().isOk());
+  }
 }
