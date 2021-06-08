@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="en-US" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <title th:text="${blog_title}">David's Blog</title>
+    <link href="../static/styles/form.css" rel="stylesheet" th:href="@{/styles/form.css}">
+    <link href="../static/styles/main.css" rel="stylesheet" th:href="@{/styles/main.css}">
+</head>
+<body>
+<header class="header" th:replace="fragments :: header"></header>
+<main class="main main_v">
+    <form action="create.html" class="form" method="post" th:object="${post}">
+        <input th:field="*{id}" type="hidden">
+        <div>
+            <label class="form__label" for="name">Author</label>
+            <input class="form__input" name="name" required th:field="*{author}" type="text">
+        </div>
+        <div>
+            <label class="form__label" for="date">Date</label>
+            <input class="form__input" name="date" required th:field="*{createDate}" type="date">
+        </div>
+        <div>
+            <label class="form__label" for="title">Title</label>
+            <input class="form__input" name="title" required th:field="*{title}" type="text">
+        </div>
+        <div>
+            <label class="form__label" for="content">Content</label>
+            <textarea class="form__textarea" cols="35" name="Content" required rows="5"
+                      th:field="*{content}"></textarea>
+        </div>
+        <div>
+            <label class="form__label" for="tags">Tags</label>
+            <input class="form__input" name="tags" required th:field="*{tagsLine}" type="text">
+        </div>
+        <button class="form__submit" type="submit">Submit</button>
+    </form>
+</main>
+<footer class="footer" th:replace="fragments :: footer"></footer>
+</body>
+</html>
