@@ -19,7 +19,7 @@ public class PreviewController {
   @GetMapping
   public String getPreview(Model model) {
     controllerService.addBlogProperties(model);
-    model.addAttribute("blogPosts", postService.getAllPosts());
+    model.addAttribute("posts", postService.getAllPosts());
     return "preview";
   }
 }
