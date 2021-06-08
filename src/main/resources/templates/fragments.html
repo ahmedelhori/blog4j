@@ -9,11 +9,11 @@
 </head>
 <body>
 <header class="header" th:fragment="header">
-    <a class="logo" href="/index.html">
+    <a class="logo" href="index.html" th:href="@{/index}">
         <img class="logo__img">
         <span class="logo__text" th:text="${blog_header}">David's Blog</span>
     </a>
-    <a class="logout" href="/logout.html">
+    <a class="logout" href="" th:href="@{/logout}" >
         <img class="logout__img" src="../static/images/user.svg" th:src="@{/images/user.svg}">
         <span class="logout__text">Logout</span>
     </a>
