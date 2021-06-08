@@ -22,18 +22,7 @@
             distribution-specific changes, and therefore minimal breakage with updates, and be pragmatic over
             ideological design choices and focus on customizability rather than user-friendliness.[7] A package manager...
         </p>
-				<div class="article-buttons">
-        <a class="article-button article-button--edit" href="create.html" th:href="@{/dashboard/editpost/{id}(id = *{id})}">
-					<img class="article-button__img article-button__img--edit" src="../static/images/pen.svg" th:src="@{/images/pen.svg}">
-				</a>
-        <a class="article-button article-button--publish" href="" th:href="@{/dashboard/deletepost/{id}(id = *{id})}">
-					<img class="article-button__img article-button__img--publish" src="../static/images/globe.svg" th:src="@{/images/globe.svg}">
-				</a>
-        <a class="article-button article-button--delete" href="" th:href="@{/dashboard/deletepost/{id}(id = *{id})}">
-					<img class="article-button__img article-button__img--delete" src="../static/images/bin.svg" th:src="@{/images/bin.svg}">
-				</a>
-				</div>
-        <a class="article__link" href="post.html" th:href="@{/dashboard/publishpost/{id}(id = *{id})}">Read more</a>
+        <a class="article__link" href="post.html" th:href="@{/post/{id}(id = *{id})}">Read more</a>
     </article>
     <article class="article article_folded">
         <span class="article__title">Article 2</span>
