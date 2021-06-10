@@ -12,10 +12,13 @@ public class ControllerService {
   private String footer;
   @Value("${blog4j.blog.title}")
   private String title;
+  @Value("${blog4j.blog.domain}")
+  private String domain;
 
   public void addBlogProperties(Model model) {
     model.addAttribute("blog_header", header);
     model.addAttribute("blog_footer", footer);
     model.addAttribute("blog_titel", title);
+    model.addAttribute("blog_domain", domain);
   }
 }

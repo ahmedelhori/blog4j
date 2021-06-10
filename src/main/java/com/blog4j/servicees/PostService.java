@@ -14,8 +14,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 public class PostService {
-  @Autowired
   private final PostRepo postRepository;
+  private final GenerateBlogService generateBlogService;
 
   public void submitPost(Post post) {
     Post preparedPost = preparePost(post);
@@ -44,8 +44,10 @@ public class PostService {
   public void publishPost(long id) {
     Optional<Post> post = postRepository.findById(id);
     if(post.isPresent()) {
-      post.get().setVisible(true);
-      postRepository.save(post.get());
+      if(generateBlogService.generateBlog()) {
+        post.get().setVisible(true);
+        postRepository.save(post.get());
+      }
     }
   }
 
