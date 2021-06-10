@@ -5,17 +5,17 @@
     <meta content="width=device-width,initial-scale=1" name="viewport">
     <title>Fragment</title>
     <link href="../static/styles/main.css" rel="stylesheet"
-          th:href="@{/styles/main.css}">
+          th:href="${basePath}+'styles/main.css'">
 </head>
 <body>
 <header class="header" th:fragment="header">
-    <a class="logo" href="index.html" th:href="${blog_domain} + '/index.html'">
+    <a class="logo" href="index.html" th:href="${basePath} + 'index.html'">
         <img class="logo__img">
         <span class="logo__text" th:text="${blog_header}">David's Blog</span>
     </a>
-    <a class="logout" href="" th:href="@{/logout}" >
-        <img class="logout__img" src="../static/images/user.svg" th:src="@{/images/user.svg}">
-        <span class="logout__text">Logout</span>
+    <a class="logout" href="" th:href="${blog_domain}+'/dashboard.html'" >
+        <img class="logout__img" src="../static/images/user.svg" th:src="${basePath} + 'images/user.svg'">
+        <span class="logout__text">Login</span>
     </a>
 </header>
 <main class="main main_v">

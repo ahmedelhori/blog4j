@@ -4,27 +4,27 @@
     <meta charset="utf-8">
     <meta content="width=device-width,initial-scale=1" name="viewport">
     <title th:text="${blog_title}">David's Blog</title>
-    <link href="../static/styles/article.css" rel="stylesheet" th:href="@{/styles/article.css}">
-    <link href="../static/styles/main.css" rel="stylesheet" th:href="@{/styles/main.css}">
+    <link href="../../static/styles/article.css" rel="stylesheet" th:href="${basePath}+'styles/article.css'">
+    <link href="../../static/styles/main.css" rel="stylesheet" th:href="${basePath}+'styles/main.css'">
 </head>
 <body>
-<header class="header" th:replace="fragments :: header">
+<header class="header" th:replace="static/fragments :: header">
 </header>
 <main class="main main_v" th:remove="all-but-first">
-    <article class="article article_folded" th:each="post : ${posts}" th:object="${post}">
+    <article class="article article--folded" th:each="post : ${posts}" th:object="${post}">
         <span class="article__title" th:text="*{title}">The Arch Linux Wikipedia page</span>
         <span class="article__author" th:text="'By ' + *{author}">By David</span>
         <time class="article__date" datetime="2021-05-21" th:text="'Last edited ' + *{#temporals.format(editDate, 'yyyy-MM-dd')}">Last edit 2021/05/28</time>
-        <p class="article__content" th:utext="*{#strings.abbreviate(content, 500)}">
+        <div class="article__content" th:utext="*{#strings.abbreviate(content, 500)}">
             Arch Linux (/ɑːrtʃ/)[4] is a Linux distribution for computers with x86-64 processors.[5] Arch Linux adheres
             to the KISS principle ("Keep It Simple, Stupid")[6] and is focused on simplicity, modernity, pragmatism,
             user centrality, and versatility. In practice, this means the project attempts to have minimal
             distribution-specific changes, and therefore minimal breakage with updates, and be pragmatic over
-            ideological design choices and focus on customizability rather than user-friendliness.[7] A package manager...
-        </p>
-        <a class="article__link" href="post.html" th:href="@{/post/{id}(id = *{id})}">Read more</a>
+            ideological design choices and focus on customizability rather than user-friendliness.[7] A package manager
+        </div>
+        <a class="article__link" href="post.html" th:href="${basePath} + 'post/' + *{title}+ '.html'">Read more</a>
     </article>
-    <article class="article article_folded">
+    <article class="article article--folded">
         <span class="article__title">Article 2</span>
         <span class="article__author">By David</span>
         <time class="article__date" datetime="2021-05-28">2021/05/28</time>
@@ -37,7 +37,7 @@
         </p>
         <a class="article__link" href="post.html">Read more</a>
     </article>
-    <article class="article article_folded">
+    <article class="article article--folded">
         <span class="article__title">Article 3</span>
         <span class="article__author">By David</span>
         <time class="article__date" datetime="2021-05-28">2021/05/28</time>
@@ -51,7 +51,7 @@
         <a class="article__link" href="post.html">Read more</a>
     </article>
 </main>
-<footer class="footer" th:replace="fragments :: footer">
+<footer class="footer" th:replace="static/fragments :: footer">
 </footer>
 </body>
 </html>
