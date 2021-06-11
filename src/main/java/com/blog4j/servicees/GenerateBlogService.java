@@ -99,7 +99,7 @@ public class GenerateBlogService {
   public boolean removePost(Post post) {
     String fileName = path + "/post" + "/" + post.getTitle() + ".html";
     try {
-      Files.delete(Paths.get(fileName));
+      Files.deleteIfExists(Paths.get(fileName));
       generateIndex();
     } catch (IOException e) {
       return false;

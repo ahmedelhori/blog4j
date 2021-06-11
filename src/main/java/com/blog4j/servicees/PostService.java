@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -16,6 +17,10 @@ public class PostService {
   private final GenerateBlogService generateBlogService;
 
   public void submitPost(Post post) {
+    Optional<Post> oldPost = postRepository.findById(post.getId());
+    if (oldPost.isPresent()) {
+      generateBlogService.removePost(oldPost.get());
+    }
     Post preparedPost = preparePost(post);
     postRepository.save(preparedPost);
     if (preparedPost.getVisible()) {

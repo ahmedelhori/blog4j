@@ -11,8 +11,8 @@
 <header class="header" th:replace="fragments :: header"></header>
 <main class="main main_v">
     <form action="create.html" class="form" method="post" th:action="@{/dashboard/create}" th:object="${post}">
-        <input th:field="*{id}" type="hidden">
-        <input th:field="*{visible}" type="hidden">
+        <input name="id" th:field="*{id}" type="hidden">
+        <input name="visible" th:field="*{visible}" type="hidden">
         <div>
             <label class="form__label" for="name">Author</label>
             <input class="form__input" name="name" required th:field="*{author}" type="text">
