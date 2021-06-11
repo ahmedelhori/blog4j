@@ -69,8 +69,9 @@ public class ControllerTest {
       .andDo(print())
       .andExpect(status().isOk());
   }
+
   @Test
-  public void postCreateTest() throws  Exception{
+  public void postCreateTest() throws Exception {
     mockMvc.perform(post("/dashboard/create")
       .contentType("application/json"))
       .andExpect(status().isOk());

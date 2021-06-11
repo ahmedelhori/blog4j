@@ -4,7 +4,6 @@ import com.blog4j.entities.Post;
 import com.blog4j.servicees.ControllerService;
 import com.blog4j.servicees.PostService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -19,23 +18,20 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping(value = {"/dashboard/create", "/dashboard/create.html"})
 public class CreateController {
-  @Autowired
   private final PostService postService;
-
-  @Autowired
   private final ControllerService controllerService;
 
   @GetMapping
-  public String getHandler(Model model){
+  public String getHandler(Model model) {
     controllerService.addBlogProperties(model);
     model.addAttribute("post", new Post());
     return "create";
   }
 
   @PostMapping
-  public String postHandler(@Valid @ModelAttribute Post post, Errors errors, Model model){
+  public String postHandler(@Valid @ModelAttribute Post post, Errors errors, Model model) {
     controllerService.addBlogProperties(model);
-    if(errors.hasErrors()){
+    if (errors.hasErrors()) {
       return "create";
     }
     postService.submitPost(post);

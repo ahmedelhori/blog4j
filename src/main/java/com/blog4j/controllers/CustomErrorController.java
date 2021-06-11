@@ -1,7 +1,7 @@
 package com.blog4j.controllers;
 
 import com.blog4j.servicees.ControllerService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
+@RequiredArgsConstructor
 @Controller
 public class CustomErrorController implements ErrorController {
-  @Autowired
-  private ControllerService controllerService;
+  private final ControllerService controllerService;
 
   @RequestMapping(value = {"/dashboard/error", "/dashboard/error.html"})
   public String handleError(HttpServletRequest request, Model model) {

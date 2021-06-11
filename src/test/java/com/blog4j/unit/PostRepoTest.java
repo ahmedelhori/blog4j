@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ActiveProfiles("test")
 @DataJpaTest
-public class PostRepoTest {
+class PostRepoTest {
   @Autowired
   private transient TestEntityManager testEntityManager;
   @Autowired

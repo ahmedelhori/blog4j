@@ -4,7 +4,6 @@ import com.blog4j.entities.Post;
 import com.blog4j.entities.Tag;
 import com.blog4j.repositories.PostRepo;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -43,8 +42,8 @@ public class PostService {
 
   public void publishPost(long id) {
     Optional<Post> post = postRepository.findById(id);
-    if(post.isPresent()) {
-      if(generateBlogService.generateBlog()) {
+    if (post.isPresent()) {
+      if (generateBlogService.generateBlog()) {
         post.get().setVisible(true);
         postRepository.save(post.get());
       }
@@ -53,7 +52,7 @@ public class PostService {
 
   public void deletePost(long id) {
     Optional<Post> post = postRepository.findById(id);
-    if(post.isPresent()) {
+    if (post.isPresent()) {
       postRepository.deleteById(id);
     }
   }
