@@ -14,7 +14,9 @@
     <article class="article article--folded" th:each="post : ${posts}" th:object="${post}">
         <span class="article__title" th:text="*{title}">The Arch Linux Wikipedia page</span>
         <span class="article__author" th:text="'By ' + *{author}">By David</span>
-        <time class="article__date" datetime="2021-05-21" th:text="'Last edited ' + *{#temporals.format(editDate, 'yyyy-MM-dd')}">Last edit 2021/05/28</time>
+        <time class="article__date" datetime="2021-05-21"
+              th:text="'Last edited ' + *{#temporals.format(editDate, 'yyyy-MM-dd')}">Last edit 2021/05/28
+        </time>
         <div class="article__content" th:utext="*{#strings.abbreviate(content, 500)}">
             Arch Linux (/ɑːrtʃ/)[4] is a Linux distribution for computers with x86-64 processors.[5] Arch Linux adheres
             to the KISS principle ("Keep It Simple, Stupid")[6] and is focused on simplicity, modernity, pragmatism,
@@ -22,17 +24,23 @@
             distribution-specific changes, and therefore minimal breakage with updates, and be pragmatic over
             ideological design choices and focus on customizability rather than user-friendliness.[7] A package manager
         </div>
-				<div class="article-buttons">
-        <a class="article-button article-button--edit" href="create.html" th:href="@{/dashboard/editpost/{id}(id = *{id})}">
-					<img class="article-button__img article-button__img--edit" src="../static/images/pen.svg" th:src="@{/images/pen.svg}">
-				</a>
-        <a class="article-button article-button--publish" href="" th:href="@{/dashboard/publishpost/{id}(id = *{id})}">
-					<img class="article-button__img article-button__img--publish" src="../static/images/globe.svg" th:src="@{/images/globe.svg}">
-				</a>
-        <a class="article-button article-button--delete" href="" th:href="@{/dashboard/deletepost/{id}(id = *{id})}">
-					<img class="article-button__img article-button__img--delete" src="../static/images/bin.svg" th:src="@{/images/bin.svg}">
-				</a>
-				</div>
+        <div class="article-buttons">
+            <a class="article-button article-button--edit" href="create.html"
+               th:href="@{/dashboard/editpost/{id}(id = *{id})}">
+                <img class="article-button__img article-button__img--edit" src="../static/images/pen.svg"
+                     th:src="@{/images/pen.svg}">
+            </a>
+            <a class="article-button article-button--publish" href=""
+               th:href="@{/dashboard/publishpost/{id}(id = *{id})}">
+                <img class="article-button__img article-button__img--publish" src="../static/images/globe.svg"
+                     th:src="@{/images/globe.svg}">
+            </a>
+            <a class="article-button article-button--delete" href=""
+               th:href="@{/dashboard/deletepost/{id}(id = *{id})}">
+                <img class="article-button__img article-button__img--delete" src="../static/images/bin.svg"
+                     th:src="@{/images/bin.svg}">
+            </a>
+        </div>
         <a class="article__link" href="post.html" th:href="@{/dashboard/post/{id}(id = *{id})}">Read more</a>
     </article>
     <article class="article article--folded">

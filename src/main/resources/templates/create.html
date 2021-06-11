@@ -10,7 +10,7 @@
 <body>
 <header class="header" th:replace="fragments :: header"></header>
 <main class="main main_v">
-    <form action="create.html" th:action="@{/dashboard/create}" class="form" method="post" th:object="${post}">
+    <form action="create.html" class="form" method="post" th:action="@{/dashboard/create}" th:object="${post}">
         <input th:field="*{id}" type="hidden">
         <div>
             <label class="form__label" for="name">Author</label>
