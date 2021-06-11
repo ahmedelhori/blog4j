@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -19,6 +18,9 @@ public class PostService {
   public void submitPost(Post post) {
     Post preparedPost = preparePost(post);
     postRepository.save(preparedPost);
+    if (preparedPost.getVisible()) {
+      generateBlogService.generatePost(preparedPost);
+    }
   }
 
   private Post preparePost(Post post) {
@@ -40,20 +42,22 @@ public class PostService {
     return postRepository.findById(id).get();
   }
 
-  public void publishPost(long id) {
-    Optional<Post> post = postRepository.findById(id);
-    if (post.isPresent()) {
-      if (generateBlogService.generateBlog()) {
-        post.get().setVisible(true);
-        postRepository.save(post.get());
-      }
+  public void togglePublishPost(long id) {
+    Post post = postRepository.findById(id).get();
+    if (!post.getVisible()) {
+      post.setVisible(true);
+      postRepository.save(post);
+      generateBlogService.generatePost(post);
+    } else {
+      post.setVisible(false);
+      postRepository.save(post);
+      generateBlogService.removePost(post);
     }
   }
 
   public void deletePost(long id) {
-    Optional<Post> post = postRepository.findById(id);
-    if (post.isPresent()) {
-      postRepository.deleteById(id);
-    }
+    Post post = postRepository.findById(id).get();
+    postRepository.deleteById(id);
+    generateBlogService.removePost(post);
   }
 }

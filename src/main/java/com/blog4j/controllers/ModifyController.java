@@ -5,7 +5,9 @@ import com.blog4j.servicees.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RequiredArgsConstructor
 @Controller
@@ -24,16 +26,14 @@ public class ModifyController {
   @PostMapping("/publishpost")
   public String publishHandler(@RequestParam(name = "id") Long id, Model model) {
     controllerService.addBlogProperties(model);
-    postService.publishPost(id);
-    model.addAttribute("posts", postService.getAllPosts());
-    return "preview";
+    postService.togglePublishPost(id);
+    return "redirect:/dashboard/preview";
   }
 
   @PostMapping("/deletepost")
   public String deleteHandler(@RequestParam(name = "id") Long id, Model model) {
     controllerService.addBlogProperties(model);
     postService.deletePost(id);
-    model.addAttribute("posts", postService.getAllPosts());
-    return "preview";
+    return "redirect:/dashboard/preview";
   }
 }

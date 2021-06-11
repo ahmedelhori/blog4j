@@ -60,6 +60,7 @@
 
 .article-button{
 	text-decoration:none;
+	border: none;
 	background-color:white;
 	box-shadow: 0.1rem 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
 	padding:1rem;
@@ -76,7 +77,15 @@
 }
 
 .article-button--publish{
+	background-color:grey;
+}
+
+.article-button--publish-true{
 	background-color:#53C700;
+}
+
+.article-button--publish-false{
+	background-color:grey;
 }
 
 .article-button--delete{

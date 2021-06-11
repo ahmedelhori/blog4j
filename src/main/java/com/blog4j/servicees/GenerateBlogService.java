@@ -7,7 +7,12 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Service
@@ -38,13 +43,10 @@ public class GenerateBlogService {
 
   public boolean generateBlog() {
     try {
-      if (!verifyPath()) {
-        return false;
-      }
       generateIndex();
       generatePosts();
     } catch (IOException e) {
-      e.printStackTrace();
+      return false;
     }
     return true;
   }
@@ -52,36 +54,22 @@ public class GenerateBlogService {
   private void generateIndex() throws IOException {
     String basePath = "";
     Context context = new Context();
-    context.setVariable("posts", postRepo.findAll());
+    context.setVariable("posts", postRepo.findByVisibleTrue());
     context.setVariable("basePath", basePath);
     addBlogProperties(context);
     String index = templateEngine.process("static/index.html", context);
 
     String fileName = path + "/index.html";
-    BufferedWriter writer = writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), "UTF-8"));
-    writer.write(index);
-
-    writer.close();
-  }
-
-  private void generatePosts() throws IOException {
-    String basePath = "../";
-    Context context = new Context();
-    List<Post> posts = postRepo.findAll();
-    for (Post post : posts) {
-      context.setVariable("post", post);
-      context.setVariable("basePath", basePath);
-      addBlogProperties(context);
-      String postHtml = templateEngine.process("static/post.html", context);
-      String fileName = path + "/post" + "/" + post.getTitle() + ".html";
-      BufferedWriter writer = writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), "UTF-8"));
-      writer.write(postHtml);
-      writer.close();
+    try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), "UTF-8"))) {
+      writer.write(index);
     }
   }
 
-  private boolean verifyPath() {
-    return new File(path).isDirectory();
+  private void generatePosts() throws IOException {
+    List<Post> posts = postRepo.findByVisibleTrue();
+    for (Post post : posts) {
+      generatePost(post);
+    }
   }
 
   private void addBlogProperties(Context context) {
@@ -89,5 +77,33 @@ public class GenerateBlogService {
     context.setVariable("blog_footer", footer);
     context.setVariable("blog_titel", title);
     context.setVariable("blog_domain", domain);
+  }
+
+  public boolean generatePost(Post post) {
+    String basePath = "../";
+    Context context = new Context();
+    context.setVariable("post", post);
+    context.setVariable("basePath", basePath);
+    addBlogProperties(context);
+    String postHtml = templateEngine.process("static/post.html", context);
+    String fileName = path + "/post" + "/" + post.getTitle() + ".html";
+    try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), "UTF-8"))) {
+      writer.write(postHtml);
+      generateIndex();
+    } catch (IOException e) {
+      return false;
+    }
+    return true;
+  }
+
+  public boolean removePost(Post post) {
+    String fileName = path + "/post" + "/" + post.getTitle() + ".html";
+    try {
+      Files.delete(Paths.get(fileName));
+      generateIndex();
+    } catch (IOException e) {
+      return false;
+    }
+    return true;
   }
 }
