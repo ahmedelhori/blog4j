@@ -96,26 +96,26 @@ public class ControllerTest {
   public void editPost() throws Exception {
     postService.submitPost(post);
 
-    mockMvc.perform(get("/dashboard/editpost/1"))
-      .andDo(print())
-      .andExpect(status().isOk());
+    mockMvc.perform(post("/dashboard/publishpost")
+      .param("id", "1"))
+      .andExpect(status().isFound());
   }
 
   @Test
   public void deletePost() throws Exception {
     postService.submitPost(post);
 
-    mockMvc.perform(get("/dashboard/deletepost/1"))
-      .andDo(print())
-      .andExpect(status().isOk());
+    mockMvc.perform(post("/dashboard/publishpost")
+      .param("id", "1"))
+      .andExpect(status().isFound());
   }
 
   @Test
   public void publishPost() throws Exception {
     postService.submitPost(post);
 
-    mockMvc.perform(get("/dashboard/publishpost/1"))
-      .andDo(print())
-      .andExpect(status().isOk());
+    mockMvc.perform(post("/dashboard/publishpost")
+      .param("id", "1"))
+      .andExpect(status().isFound());
   }
 }
