@@ -25,21 +25,27 @@
             ideological design choices and focus on customizability rather than user-friendliness.[7] A package manager
         </div>
         <div class="article-buttons">
-            <a class="article-button article-button--edit" href="create.html"
-               th:href="@{/dashboard/editpost/{id}(id = *{id})}">
-                <img class="article-button__img article-button__img--edit" src="../static/images/pen.svg"
-                     th:src="@{/images/pen.svg}">
-            </a>
-            <a class="article-button article-button--publish" href=""
-               th:href="@{/dashboard/publishpost/{id}(id = *{id})}">
-                <img class="article-button__img article-button__img--publish" src="../static/images/globe.svg"
-                     th:src="@{/images/globe.svg}">
-            </a>
-            <a class="article-button article-button--delete" href=""
-               th:href="@{/dashboard/deletepost/{id}(id = *{id})}">
-                <img class="article-button__img article-button__img--delete" src="../static/images/bin.svg"
-                     th:src="@{/images/bin.svg}">
-            </a>
+            <form action="create.html" method="post" th:action="@{/dashboard/editpost}">
+                <input name="id" th:value="*{id}" type="hidden"/>
+                <button class="article-button article-button--edit" type="submit">
+                    <img class="article-button__img article-button__img--edit" src="../static/images/pen.svg"
+                         th:src="@{/images/pen.svg}">
+                </button>
+            </form>
+            <form action="preview.html" method="post" th:action="@{/dashboard/publishpost}">
+                <input name="id" th:value="*{id}" type="hidden"/>
+                <button class="article-button article-button--publish" type="submit">
+                    <img class="article-button__img article-button__img--publish" src="../static/images/globe.svg"
+                         th:src="@{/images/globe.svg}">
+                </button>
+            </form>
+            <form action="preview.html" method="post" th:action="@{/dashboard/deletepost}">
+                <input name="id" th:value="*{id}" type="hidden"/>
+                <button class="article-button article-button--delete" type="submit">
+                    <img class="article-button__img article-button__img--delete" src="../static/images/bin.svg"
+                         th:src="@{/images/bin.svg}">
+                </button>
+            </form>
         </div>
         <a class="article__link" href="post.html" th:href="@{/dashboard/post/{id}(id = *{id})}">Read more</a>
     </article>
