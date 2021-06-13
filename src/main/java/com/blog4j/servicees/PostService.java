@@ -6,6 +6,7 @@ import com.blog4j.repositories.PostRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -24,7 +25,11 @@ public class PostService {
     Post preparedPost = preparePost(post);
     postRepository.save(preparedPost);
     if (preparedPost.getVisible()) {
-      generateBlogService.generatePost(preparedPost);
+      try {
+        generateBlogService.generatePost(preparedPost);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
     }
   }
 
@@ -52,7 +57,11 @@ public class PostService {
     if (!post.getVisible()) {
       post.setVisible(true);
       postRepository.save(post);
-      generateBlogService.generatePost(post);
+      try {
+        generateBlogService.generatePost(post);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
     } else {
       post.setVisible(false);
       postRepository.save(post);

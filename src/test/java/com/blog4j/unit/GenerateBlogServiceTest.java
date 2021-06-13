@@ -13,11 +13,14 @@ import org.springframework.test.context.ActiveProfiles;
 import org.thymeleaf.TemplateEngine;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
@@ -51,7 +54,36 @@ public class GenerateBlogServiceTest {
   }
 
   @Test
-  public void verifyPathTest() {
-    assertTrue(generator.generateBlog());
+  public void prepareEnvTest() throws IOException {
+    generator.prepareEnv();
+
+    File dir = new File(tempDir.getPath()+"/post");
+    assertTrue(dir.isDirectory());
+  }
+
+  @Test
+  public void generateAssetsTest() throws IOException {
+    generator.prepareEnv();
+
+    File dir = new File(tempDir.getPath()+"/styles/main.css");
+    assertTrue(dir.isFile());
+  }
+
+  @Test
+  public void generateIndexTest() throws IOException {
+    generator.prepareEnv();
+    generator.generateBlog();
+
+    File dir = new File(tempDir.getPath()+"/index.html");
+    assertTrue(dir.isFile());
+  }
+
+  @Test
+  public void generatePostTest() throws IOException {
+    generator.prepareEnv();
+    generator.generateBlog();
+
+    File dir = new File(tempDir.getPath()+"/post/Title title.html");
+    assertTrue(dir.isFile());
   }
 }

@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 @Service
 public class GenerateBlogService {
@@ -41,14 +41,59 @@ public class GenerateBlogService {
     this.domain = domain;
   }
 
-  public boolean generateBlog() {
-    try {
-      generateIndex();
-      generatePosts();
-    } catch (IOException e) {
-      return false;
+  public void prepareEnv() throws IOException {
+    Path dirPath = Path.of(path+"/post");
+    if (!Files.isDirectory(dirPath)){
+      Files.createDirectories(dirPath);
     }
-    return true;
+    generateAssets();
+  }
+
+  private void generateAssets() throws IOException {
+    String sourceZip = "asset/assets.zip";
+    File destDir = new File(path);
+    ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+    try(InputStream inputStream = classloader.getResourceAsStream(sourceZip)){
+      if(inputStream==null){
+        throw new IOException("assets.zip not found");
+      }
+      try(ZipInputStream zipInputStream = new ZipInputStream(inputStream)) {
+        ZipEntry zipEntry;
+        while ((zipEntry = zipInputStream.getNextEntry()) != null) {
+          File newFile = new File(destDir, zipEntry.getName());
+          byte[] buffer = new byte[1024];
+          if (zipEntry.isDirectory()) {
+            if (!newFile.isDirectory() && !newFile.mkdirs()) {
+              throw new IOException("Failed to create directory " + newFile);
+            }
+          } else {
+            File parent = newFile.getParentFile();
+            if (!parent.isDirectory() && !parent.mkdirs()) {
+              throw new IOException("Failed to create directory " + parent);
+            }
+
+            FileOutputStream fileOutputStream = new FileOutputStream(newFile);
+            int len;
+            while ((len = zipInputStream.read(buffer)) > 0) {
+              fileOutputStream.write(buffer, 0, len);
+            }
+            fileOutputStream.close();
+          }
+        }
+      }
+    }
+  }
+
+  private void addBlogProperties(Context context) {
+    context.setVariable("blog_header", header);
+    context.setVariable("blog_footer", footer);
+    context.setVariable("blog_titel", title);
+    context.setVariable("blog_domain", domain);
+  }
+
+  public void generateBlog() throws IOException {
+    generateIndex();
+    generatePosts();
   }
 
   private void generateIndex() throws IOException {
@@ -72,14 +117,7 @@ public class GenerateBlogService {
     }
   }
 
-  private void addBlogProperties(Context context) {
-    context.setVariable("blog_header", header);
-    context.setVariable("blog_footer", footer);
-    context.setVariable("blog_titel", title);
-    context.setVariable("blog_domain", domain);
-  }
-
-  public boolean generatePost(Post post) {
+  public boolean generatePost(Post post) throws IOException {
     String basePath = "../";
     Context context = new Context();
     context.setVariable("post", post);
@@ -89,6 +127,7 @@ public class GenerateBlogService {
     String fileName = path + "/post" + "/" + post.getTitle() + ".html";
     try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), "UTF-8"))) {
       writer.write(postHtml);
+      generateAssets();
       generateIndex();
     } catch (IOException e) {
       return false;
