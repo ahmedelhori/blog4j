@@ -17,8 +17,8 @@ public class PostService {
   private final GenerateBlogService generateBlogService;
 
   public void submitPost(Post post) {
-    Optional<Post> oldPost = postRepository.findById(post.getId());
-    if (oldPost.isPresent()) {
+    if(post.getId()!=null) {
+      Optional<Post> oldPost = postRepository.findById(post.getId());
       generateBlogService.removePost(oldPost.get());
     }
     Post preparedPost = preparePost(post);
