@@ -13,8 +13,5 @@ RUN gradle bootJar --no-daemon --stacktrace --info
 
 FROM openjdk:11.0.11-jre-buster
 WORKDIR /app
-RUN mkdir -p /var/www/blog/post
-COPY src/main/resources/static/images/ /var/www/blog/images/
-COPY src/main/resources/static/styles/ /var/www/blog/styles/
 COPY --from=build /app/build/libs/blog4j.jar /blog4j.jar
 CMD ["java", "-jar", "-Dspring.profiles.active=default", "/blog4j.jar"]

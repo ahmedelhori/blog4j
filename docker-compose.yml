@@ -14,6 +14,8 @@ services:
       - database
     ports:
       - "8080:8080"
+    volumes:
+      - /var/www/blog:/var/www/blog
     environment:
       - "BLOG4J_BLOG_HEADER=Example Blog"
       - "BLOG4J_BLOG_FOOTER=Example Blog"
