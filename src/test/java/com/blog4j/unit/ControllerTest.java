@@ -43,7 +43,7 @@ public class ControllerTest {
     when(postService.getPost(1L)).thenReturn(post);
   }
 
-	@WithMockUser(username = "user", password = "user")
+	@WithMockUser(username = "admin", password = "admin")
   @Test
   public void getDashboardTest() throws Exception {
     mockMvc.perform(get("/dashboard")
@@ -52,7 +52,7 @@ public class ControllerTest {
       .andExpect(status().isOk());
   }
 
-  @WithMockUser(username = "user", password = "user")
+  @WithMockUser(username = "admin", password = "admin")
   @Test
   public void getPreviewTest() throws Exception {
     mockMvc.perform(get("/dashboard/preview")
@@ -61,7 +61,7 @@ public class ControllerTest {
       .andExpect(status().isOk());
   }
 
-  @WithMockUser(username = "user", password = "user")
+  @WithMockUser(username = "admin", password = "admin")
   @Test
   public void error404Test() throws Exception {
     mockMvc.perform(get("/dashboard/site-doesnt-exist")
@@ -70,7 +70,7 @@ public class ControllerTest {
       .andExpect(status().is4xxClientError());
   }
 
-  @WithMockUser(username = "user", password = "user")
+  @WithMockUser(username = "admin", password = "admin")
   @Test
   public void getCreateTest() throws Exception {
     mockMvc.perform(get("/dashboard/create")
@@ -79,7 +79,7 @@ public class ControllerTest {
       .andExpect(status().isOk());
   }
 
-	@WithMockUser(username = "user", password = "user")
+	@WithMockUser(username = "admin", password = "admin")
   @Test
   public void postCreateTest() throws Exception {
     mockMvc.perform(post("/dashboard/create")
@@ -88,7 +88,7 @@ public class ControllerTest {
       .andExpect(status().isOk());
   }
 
-	@WithMockUser(username = "user", password = "user")
+	@WithMockUser(username = "admin", password = "admin")
   @Test
   public void postCreatePostTest() throws Exception {
 
@@ -98,7 +98,7 @@ public class ControllerTest {
       .andExpect(status().isFound());
   }
 
-	@WithMockUser(username = "user", password = "user")
+	@WithMockUser(username = "admin", password = "admin")
   @Test
   public void getPostParam() throws Exception {
     mockMvc.perform(get("/dashboard/post/1")
@@ -107,7 +107,7 @@ public class ControllerTest {
       .andExpect(status().isOk());
   }
 
-	@WithMockUser(username = "user", password = "user")
+	@WithMockUser(username = "admin", password = "admin")
   @Test
   public void editPost() throws Exception {
     postService.submitPost(post);
@@ -118,7 +118,7 @@ public class ControllerTest {
       .andExpect(status().isFound());
   }
 
-	@WithMockUser(username = "user", password = "user")
+	@WithMockUser(username = "admin", password = "admin")
   @Test
   public void deletePost() throws Exception {
     postService.submitPost(post);
@@ -129,7 +129,7 @@ public class ControllerTest {
       .andExpect(status().isFound());
   }
 
-	@WithMockUser(username = "user", password = "user")
+	@WithMockUser(username = "admin", password = "admin")
   @Test
   public void publishPost() throws Exception {
     postService.submitPost(post);
