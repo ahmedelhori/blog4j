@@ -88,7 +88,7 @@ public class GenerateBlogService {
   private void addBlogProperties(Context context) {
     context.setVariable("blog_header", header);
     context.setVariable("blog_footer", footer);
-    context.setVariable("blog_titel", title);
+    context.setVariable("blog_title", title);
     context.setVariable("blog_domain", domain);
   }
 
