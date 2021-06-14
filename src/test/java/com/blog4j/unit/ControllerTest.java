@@ -8,26 +8,27 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static org.mockito.Mockito.when;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest
+@ActiveProfiles("test")
 public class ControllerTest {
   private Post post;
-  @Autowired
-  private MockMvc mockMvc;
-  @MockBean
-  private PostService postService;
-  @MockBean
-  private ControllerService controllerService;
+  @Autowired private MockMvc mockMvc;
+  @MockBean private PostService postService;
+  @MockBean private ControllerService controllerService;
 
   @BeforeEach
   public void setup() {
@@ -42,79 +43,99 @@ public class ControllerTest {
     when(postService.getPost(1L)).thenReturn(post);
   }
 
+	@WithMockUser(username = "user", password = "user")
   @Test
   public void getDashboardTest() throws Exception {
-    mockMvc.perform(get("/dashboard"))
+    mockMvc.perform(get("/dashboard")
+      .with(csrf()))
       .andDo(print())
       .andExpect(status().isOk());
   }
 
+  @WithMockUser(username = "user", password = "user")
   @Test
   public void getPreviewTest() throws Exception {
-    mockMvc.perform(get("/dashboard/preview"))
+    mockMvc.perform(get("/dashboard/preview")
+      .with(csrf()))
       .andDo(print())
       .andExpect(status().isOk());
   }
 
+  @WithMockUser(username = "user", password = "user")
   @Test
   public void error404Test() throws Exception {
-    mockMvc.perform(get("/dashboard/site-doesnt-exist"))
+    mockMvc.perform(get("/dashboard/site-doesnt-exist")
+      .with(csrf()))
       .andDo(print())
       .andExpect(status().is4xxClientError());
   }
 
+  @WithMockUser(username = "user", password = "user")
   @Test
   public void getCreateTest() throws Exception {
-    mockMvc.perform(get("/dashboard/create"))
+    mockMvc.perform(get("/dashboard/create")
+      .with(csrf()))
       .andDo(print())
       .andExpect(status().isOk());
   }
 
+	@WithMockUser(username = "user", password = "user")
   @Test
   public void postCreateTest() throws Exception {
     mockMvc.perform(post("/dashboard/create")
+      .with(csrf())
       .contentType("application/json"))
       .andExpect(status().isOk());
   }
 
+	@WithMockUser(username = "user", password = "user")
   @Test
   public void postCreatePostTest() throws Exception {
 
     mockMvc.perform(post("/dashboard/create")
+      .with(csrf())
       .flashAttr("post", post))
       .andExpect(status().isFound());
   }
 
+	@WithMockUser(username = "user", password = "user")
   @Test
   public void getPostParam() throws Exception {
-    mockMvc.perform(get("/dashboard/post/1"))
+    mockMvc.perform(get("/dashboard/post/1")
+      .with(csrf()))
       .andDo(print())
       .andExpect(status().isOk());
   }
 
+	@WithMockUser(username = "user", password = "user")
   @Test
   public void editPost() throws Exception {
     postService.submitPost(post);
 
     mockMvc.perform(post("/dashboard/publishpost")
+      .with(csrf())
       .param("id", "1"))
       .andExpect(status().isFound());
   }
 
+	@WithMockUser(username = "user", password = "user")
   @Test
   public void deletePost() throws Exception {
     postService.submitPost(post);
 
     mockMvc.perform(post("/dashboard/publishpost")
+      .with(csrf())
       .param("id", "1"))
       .andExpect(status().isFound());
   }
 
+	@WithMockUser(username = "user", password = "user")
   @Test
   public void publishPost() throws Exception {
     postService.submitPost(post);
 
     mockMvc.perform(post("/dashboard/publishpost")
+      .with(csrf())
       .param("id", "1"))
       .andExpect(status().isFound());
   }

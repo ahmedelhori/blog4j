@@ -47,6 +47,7 @@ public class GenerateBlogService {
       Files.createDirectories(dirPath);
     }
     generateAssets();
+		generateIndex();
   }
 
   private void generateAssets() throws IOException {
