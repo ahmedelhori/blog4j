@@ -10,8 +10,8 @@
 <body>
 <header class="header" th:replace="fragments :: header">
 </header>
-<main class="main main_v" th:remove="all-but-first">
-	<div class="articles">
+<main class="main">
+	<div class="articles" th:remove="all-but-first">
     <article class="article article--folded" th:each="post : ${posts}" th:object="${post}">
         <span class="article__title" th:text="*{title}">The Arch Linux Wikipedia page</span>
         <span class="article__author" th:text="'By ' + *{author}">By David</span>

@@ -9,7 +9,7 @@
 </head>
 <body>
 <header class="header" th:replace="fragments :: header"></header>
-<main class="main main_v">
+<main class="main">
     <form action="create.html" class="form" method="post" th:action="@{/dashboard/create}" th:object="${post}">
         <input name="id" th:field="*{id}" type="hidden">
         <input name="visible" th:field="*{visible}" type="hidden">
