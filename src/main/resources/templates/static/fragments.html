@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width,initial-scale=1" name="viewport">
     <title>Fragment</title>
-    <link href="../static/styles/main.css" rel="stylesheet"
+    <link href="../../static/styles/main.css" rel="stylesheet"
           th:href="${basePath}+'styles/main.css'">
 </head>
 <body>
@@ -14,7 +14,7 @@
         <span class="logo__text" th:text="${blog_header}">David's Blog</span>
     </a>
     <a class="logout" href="" th:href="${blog_domain}+'/dashboard.html'">
-        <img class="logout__img" src="../static/images/user.svg" th:src="${basePath} + 'images/user.svg'">
+        <img class="logout__img" src="../../static/images/user.svg" th:src="${basePath} + 'images/user.svg'">
         <span class="logout__text">Login</span>
     </a>
 </header>

@@ -1,15 +1,19 @@
+:root{
+	--card-bg-color: white;
+	--card-fg-color: black;
+}
+
 .card{
 	display:flex;
 	flex-direction:column;
 	align-items:center;
-	text-decoration:none;
-	background-color:white;
-	box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.2);
+	width:18rem;
+	height:25rem;
 	margin: 3rem;
-	height:30rem;
-	min-height:30rem;
-	width:25rem;
-	min-width:25rem;
+	padding: 3rem;
+	text-decoration:none;
+	background-color: var(--card-bg-color);
+	box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.2);
 	transition: box-shadow 0.5s;
 }
 
@@ -18,11 +22,12 @@
 }
 
 .card__img{
-	padding:10%;
 	height:50%;
-	width:100%;
 }
 
 .card__text{
-	display:block;
+	margin-top:30%;
+	font-size:175%;
+	font-weight:bold;
+	color: var(--card-fg-color);
 }

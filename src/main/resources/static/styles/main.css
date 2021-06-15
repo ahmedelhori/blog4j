@@ -1,19 +1,27 @@
+:root{
+	--main-bg-color: #eeeeee;
+	--main-fg-color: #0F61A9;
+	--sec-fg-color: white;
+	--color-green: #53C700;
+	--color-red: #EB0000;
+}
+
 html, body{
 	margin: 0;
-	background-color: white;
-	height: 100vh;
+	background-color: var(--main-bg-color);
 }
 
 body{
 	display: flex;
 	flex-direction:column;
+	overflow-x:hidden;
+	min-height:100vh;
 }
 
 .header{
 	display: flex;
-	align-items:center;
-	background-color: #0F61A9;
-	padding: 1rem 3rem;
+	padding: 2rem;
+	background-color: var(--main-fg-color);
 }
 
 .logo{
@@ -21,10 +29,9 @@ body{
 }
 
 .logo__text{
-	font-size:2rem;
+	font-size:3rem;
 	font-weight:bold;
-	color: white;
-	text-decoration:none;
+	color: var(--sec-fg-color);
 }
 
 .logout{
@@ -37,35 +44,35 @@ body{
 }
 
 .logout__text{
-	color: white;
+	color: var(--sec-fg-color);
 }
 
 .main{
-	background-color:#eeeeee;
+	flex:1;
+	padding: 3rem;
+	background-color: var(--main-bg-color);
 }
 
 .main_h{
 	display: flex;
 	justify-content:center;
 	align-items:center;
-	flex:1;
 }
 
 .main_v{
 	display: flex;
 	flex-direction:column;
 	align-items:center;
-	flex:1;
 }
 
 .footer{
 	display: flex;
 	flex-direction:column;
-	background-color: #0F61A9;
-	padding: 1rem 4rem;
+	align-items:center;
+	padding: 1rem;
+	background-color: var(--main-fg-color);
 }
 
 .footer__content{
-	color: white;
-	text-align:center;
+	color: var(--sec-fg-color);
 }

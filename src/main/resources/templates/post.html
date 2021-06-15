@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width,initial-scale=1" name="viewport">
-    <title th:text="${blog_title}">David's Blog</title>
+		<title th:text="${post.title} +' - '+ ${blog_title}">David's Blog</title>
     <link href="../static/styles/article.css" rel="stylesheet" th:href="@{/styles/article.css}">
     <link href="../static/styles/main.css" rel="stylesheet" th:href="@{/styles/main.css}">
 </head>
