@@ -1,11 +1,16 @@
+.articles{
+	display:flex;
+	flex-direction:column;
+}
+
 .article{
+	flex:1;
 	display:grid;
 	grid-template-columns: 4fr 1fr;
 	grid-template-rows: 3rem 3rem auto;
 	overflow:hidden;
 	width:60rem;
 	max-width:90vw;
-	flex:1;
 	margin:1rem;
 	padding: 2rem;
 	border-radius:1rem;
@@ -15,6 +20,7 @@
 }
 
 .article--folded{
+	flex:none;
 	grid-template-rows: 1fr 1fr 4fr 1fr;
 	height:15rem;
 }

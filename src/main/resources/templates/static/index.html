@@ -11,6 +11,7 @@
 <header class="header" th:replace="static/fragments :: header">
 </header>
 <main class="main main_v" th:remove="all-but-first">
+	<div class="articles">
     <article class="article article--folded" th:each="post : ${posts}" th:object="${post}">
         <span class="article__title" th:text="*{title}">The Arch Linux Wikipedia page</span>
         <span class="article__author" th:text="'By ' + *{author}">By David</span>
@@ -52,6 +53,7 @@
         </p>
         <a class="article__link" href="post.html">Read more</a>
     </article>
+	</div>
 </main>
 <footer class="footer" th:replace="static/fragments :: footer">
 </footer>

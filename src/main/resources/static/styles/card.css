@@ -2,15 +2,23 @@
 	--card-bg-color: white;
 	--card-fg-color: black;
 }
+.cards{
+	flex:1;
+	display:flex;
+	flex-wrap:wrap;
+	justify-content:center;
+	align-items:center;
+}
 
 .card{
 	display:flex;
 	flex-direction:column;
 	align-items:center;
-	width:18rem;
+	overflow:hidden;
+	width:20rem;
 	height:25rem;
-	margin: 3rem;
-	padding: 3rem;
+	margin:2rem;
+	padding: 2rem;
 	text-decoration:none;
 	background-color: var(--card-bg-color);
 	box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.2);
@@ -22,12 +30,12 @@
 }
 
 .card__img{
-	height:50%;
+	height:75%;
 }
 
 .card__text{
-	margin-top:30%;
-	font-size:175%;
+	height:25%;
+	margin-top:4rem;
 	font-weight:bold;
 	color: var(--card-fg-color);
 }
