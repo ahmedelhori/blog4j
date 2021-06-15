@@ -9,6 +9,7 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=blog4j
   app:
+    image: blog4j
     build: .
     depends_on:
       - database
@@ -18,9 +19,11 @@ services:
       - /var/www/blog:/var/www/blog
     environment:
       - "BLOG4J_BLOG_HEADER=Example Blog"
-      - "BLOG4J_BLOG_FOOTER=Example Blog"
+      - "BLOG4J_BLOG_FOOTER=\u00a9 Example Blog"
       - "BLOG4J_BLOG_TITLE=Example Blog"
       - "BLOG4J_BLOG_DOMAIN=example.com"
+      - "BLOG4J_USERNAME=admin"
+      - "BLOG4J_PASSWORD=admin"
       - TZ=Europe/Berlin
 volumes:
   blog4j-data:
