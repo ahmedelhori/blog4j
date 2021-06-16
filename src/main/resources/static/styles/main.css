@@ -1,19 +1,29 @@
+:root{
+	--main-bg-color: #eeeeee;
+	--main-fg-color: #0F61A9;
+	--sec-fg-color: white;
+	--color-green: #53C700;
+	--color-red: #EB0000;
+}
+
 html, body{
 	margin: 0;
-	background-color: white;
-	height: 100vh;
+	background-color: var(--main-bg-color);
 }
 
 body{
 	display: flex;
 	flex-direction:column;
+	overflow-x:hidden;
+	min-height:100vh;
 }
 
 .header{
 	display: flex;
 	align-items:center;
-	background-color: #0F61A9;
-	padding: 1rem 3rem;
+	height:5rem;
+	padding:2rem;
+	background-color: var(--main-fg-color);
 }
 
 .logo{
@@ -23,49 +33,43 @@ body{
 .logo__text{
 	font-size:2rem;
 	font-weight:bold;
-	color: white;
-	text-decoration:none;
+	color: var(--sec-fg-color);
 }
 
-.logout{
+.login{
+	height:5rem;
+	width:3rem;
 	margin-left:auto;
 	text-decoration:none;
 }
 
-.logout__img{
+.login__img{
 	filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(265deg) brightness(104%) contrast(102%);
 }
 
-.logout__text{
-	color: white;
+.login__text{
+	color: var(--sec-fg-color);
 }
 
 .main{
-	background-color:#eeeeee;
-}
-
-.main_h{
-	display: flex;
-	justify-content:center;
-	align-items:center;
 	flex:1;
-}
-
-.main_v{
-	display: flex;
+	display:flex;
 	flex-direction:column;
 	align-items:center;
-	flex:1;
+	padding: 2rem;
+	background-color: var(--main-bg-color);
 }
 
 .footer{
 	display: flex;
 	flex-direction:column;
-	background-color: #0F61A9;
-	padding: 1rem 4rem;
+	justify-content:center;
+	align-items:center;
+	height:3rem;
+	padding: 1rem;
+	background-color: var(--main-fg-color);
 }
 
 .footer__content{
-	color: white;
-	text-align:center;
+	color: var(--sec-fg-color);
 }

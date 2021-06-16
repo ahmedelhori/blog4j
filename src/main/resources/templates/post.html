@@ -3,14 +3,14 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width,initial-scale=1" name="viewport">
-    <title th:text="${blog_title}">David's Blog</title>
+		<title th:text="${post.title} +' - '+ ${blog_title}">David's Blog</title>
     <link href="../static/styles/article.css" rel="stylesheet" th:href="@{/styles/article.css}">
     <link href="../static/styles/main.css" rel="stylesheet" th:href="@{/styles/main.css}">
 </head>
 <body>
 <header class="header" th:replace="fragments :: header">
 </header>
-<main class="main main_v">
+<main class="main">
     <article class="article" th:object="${post}">
         <span class="article__title" th:text="*{title}">The Arch Linux Wikipedia page</span>
         <span class="article__author" th:text="'By ' + *{author}">By David</span>
