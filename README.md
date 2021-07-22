@@ -4,7 +4,7 @@
  
 A blogging engine written with Java and Spring Boot.
 
-![master branch](https://github.com/ahmedelhori/blog4j/actions/workflows/ci.yml/badge.svg)
+![Workflow](https://github.com/ahmedelhori/blog4j/actions/workflows/ci.yml/badge.svg)
 
 ![](.github/asset/preview.gif)
 
