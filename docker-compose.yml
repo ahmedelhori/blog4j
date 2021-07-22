@@ -13,10 +13,10 @@ services:
     build: .
     depends_on:
       - database
-    ports:
-      - "8080:8080"
+    expose:
+      - "8080"
     volumes:
-      - /var/www/blog:/var/www/blog
+      - blog4j-web:/var/www/blog
     environment:
       - "BLOG4J_BLOG_HEADER=Example Blog"
       - "BLOG4J_BLOG_FOOTER=\u00a9 Example Blog"
@@ -25,5 +25,16 @@ services:
       - "BLOG4J_USERNAME=admin"
       - "BLOG4J_PASSWORD=admin"
       - TZ=Europe/Berlin
+  web:
+    image: nginx:1.21.1
+    depends_on:
+      - app
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/blog:/etc/nginx/conf.d/default.conf
+      - blog4j-web:/var/www/blog
+
 volumes:
   blog4j-data:
+  blog4j-web:
