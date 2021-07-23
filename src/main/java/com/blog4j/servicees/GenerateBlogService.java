@@ -24,21 +24,18 @@ public class GenerateBlogService {
   private final String footer;
   private final String title;
   private final String path;
-  private final String domain;
 
   public GenerateBlogService(PostRepo postRepo, TemplateEngine templateEngine,
                              @Value("${blog4j.blog.header}") String header,
                              @Value("${blog4j.blog.footer}") String footer,
                              @Value("${blog4j.blog.title}") String title,
-                             @Value("${blog4j.blog.path}") String path,
-                             @Value("${blog4j.blog.domain}") String domain) {
+                             @Value("${blog4j.blog.path}") String path){
     this.postRepo = postRepo;
     this.templateEngine = templateEngine;
     this.header = header;
     this.footer = footer;
     this.title = title;
     this.path = path;
-    this.domain = domain;
   }
 
   public void prepareEnv() throws IOException {
@@ -89,7 +86,6 @@ public class GenerateBlogService {
     context.setVariable("blog_header", header);
     context.setVariable("blog_footer", footer);
     context.setVariable("blog_title", title);
-    context.setVariable("blog_domain", domain);
   }
 
   public void generateBlog() throws IOException {

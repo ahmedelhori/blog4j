@@ -9,7 +9,7 @@
 </head>
 <body>
 <header class="header" th:fragment="header">
-    <a class="logo" href="index.html" th:href="${blog_domain} + '/index.html'">
+    <a class="logo" href="index.html" th:href="@{/index.html}">
         <img class="logo__img">
         <span class="logo__text" th:text="${blog_header}">David's Blog</span>
     </a>

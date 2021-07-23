@@ -50,7 +50,7 @@ public class GenerateBlogServiceTest {
     List<Post> posts = new ArrayList<>();
     posts.add(post);
     when(postRepo.findByVisibleTrue()).thenReturn(posts);
-    generator = new GenerateBlogService(postRepo, templateEngine, "test", "test", "test", tempDir.getPath(), "http://localhost:8080");
+    generator = new GenerateBlogService(postRepo, templateEngine, "test", "test", "test", tempDir.getPath());
   }
 
   @Test
