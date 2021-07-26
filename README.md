@@ -13,7 +13,7 @@ A blogging engine written with Java and Spring Boot.
 2. On your server run the following command:
 
 ```
-$ git clone https://github.com/ahmedelhori/blog4j && cd blog4j && docker-compose build && docker-compose up
+$ git clone https://github.com/ahmed/blog4j && cd blog4j && docker-compose build && docker-compose up
 ```
 
 ## Example Config:
