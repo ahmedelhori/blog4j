@@ -9,7 +9,7 @@ A blogging engine written with Java and Spring Boot.
 ![](.github/asset/preview.gif)
 
 # How to run
-1. Adjust the docker-compose file to your needs (don't forget to add your blog's domain name).
+1. Adjust the docker-compose file to your needs.
 2. On your server run the following command:
 
 ```
