@@ -35,4 +35,4 @@ version: "3.9"
         ..
 ```
 
-The app will bind to `port 80` on your server.
+The app will bind to `port 8080` on your machine.
