@@ -27,7 +27,6 @@ version: "3.9"
       - "BLOG4J_BLOG_HEADER=Example Blog"
       - "BLOG4J_BLOG_FOOTER=\u00a9 Example Blog"
       - "BLOG4J_BLOG_TITLE=Example Blog"
-      - "BLOG4J_BLOG_DOMAIN=blog.example.com"
       - "BLOG4J_USERNAME=admin"
       - "BLOG4J_PASSWORD=admin"
       - TZ=Europe/Berlin
